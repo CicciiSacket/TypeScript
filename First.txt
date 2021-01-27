@@ -1,0 +1,29 @@
+typescript è un superset di javascript, js su ts okay, viceversa no.
+Non utilizza V8 ma un processo simile alla JVM, il codice ts viene transcopilato in js e interpretato
+annoatione tipizzata, non obbligatoria
+in ogni progetto va eseguito da shell tsc --init
+
+const add = (left: number, right: number): number => left + right //creazione di una funzione, potremmo crearla anche come si fa in js
+
+src sono i file in ts e in automatico dentro build mi crea il corrispettivo in js.
+per eseguire si fa node build file
+
+per eseguire tramite npm si modifica il package.json in modo da eseguire e fare tsc insieme
+
+number - boolean - string - any(controllo del tipo baypassato) - null - undefined [tipi]
+
+
+cartella progetto:
+tsc --init
+mkdir src e build
+modifica in tsconfig.json di outDir->buil e rootDir->src
+cd src
+touch file.ts
+tsc // per straformare il ts in file js che verrà salvato in build
+npm init per package.json --- qui dentro modificare:  "scripts": {
+    "build":"tsc", per fare buildare in dir buil
+    "start": "npm run build && node ./build/index.js", per eseguire con npm start
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+interfacce e classi!
