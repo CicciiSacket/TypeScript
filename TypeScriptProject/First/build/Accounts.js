@@ -8,14 +8,8 @@ class Account {
             this.balance = balance;
         this.transfers = transfers;
     }
-    getCountNumber() {
-        return this.countNumber;
-    }
-    getBalance() {
-        return this.balance;
-    }
-    getTransfer() {
-        return this.transfers;
-    }
+    getCountNumber() { return this.countNumber; }
+    getBalance() { return this.balance; }
+    getTransfer() { return this.transfers; }
 }
 exports.Account = Account;
