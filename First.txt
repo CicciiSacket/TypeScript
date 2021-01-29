@@ -27,3 +27,5 @@ npm init per package.json --- qui dentro modificare:  "scripts": {
   },
 
 interfacce e classi!
+
+i parametri opzionali anche nel construttore con nome?:tipo oppure uno di default con nome:tipo=valore, anche nelle interfacce 
