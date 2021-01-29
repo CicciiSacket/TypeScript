@@ -12,9 +12,9 @@ export class Bank{
         this.totalAccounts = accounts
     }
 
-    getTotalAccounts = ():Account[] => this.totalAccounts
+    getTotalAccounts = ():Account[]  => this.totalAccounts //:string e toString
     getTotalTransfer = () => this.transactions
-    
+
     getAccount = (countNumber:string) => this.totalAccounts.filter(item =>{
         if(item.countNumber === countNumber){
             return item
@@ -26,7 +26,11 @@ export class Bank{
         this.totalAccounts.push(newAccount)
         return newAccount
     }
-    removeAccount = (countNumber:string) => delete this.totalAccounts[this.totalAccounts.findIndex(item =>{if(item.countNumber === countNumber)return item})]
+
+    removeAccount = (countNumber:string) => delete this.totalAccounts[this.totalAccounts.findIndex(item =>{
+        if(item.countNumber === countNumber)
+        return item
+    })]
     
     generateTransfer = (countSend : string, countReceives : string, moneyTransfer : number):Transaction => {
         let transaction : Transaction = {
@@ -49,4 +53,10 @@ export class Bank{
         this.transactions.push(transaction)
         return transaction
     }
+    
+    getAccountTransaction = (countNumber:string) => this.totalAccounts.filter(item =>{
+        if(item.countNumber === countNumber){
+            return item.transfers
+        } 
+    })
 }

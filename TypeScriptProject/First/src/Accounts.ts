@@ -12,10 +12,8 @@ export class Account {
         this.balance = balance
         this.transfers = transfers
     }
-
-    getCountNumber():string{return this.countNumber}
-
-    getBalance():number{return this.balance}
-
-    getTransfer():Transaction[]{return this.transfers } 
+    
+    getCountNumber = ():string => this.countNumber
+    getBalance = ():number => this.balance
+    getTransfer = ():Transaction[] =>this.transfers 
 }

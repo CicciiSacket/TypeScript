@@ -6,7 +6,7 @@ class Bank {
     constructor(numberFiliale, accounts, transactions) {
         this.totalAccounts = [];
         this.transactions = [];
-        this.getTotalAccounts = () => this.totalAccounts;
+        this.getTotalAccounts = () => this.totalAccounts; //:string e toString
         this.getTotalTransfer = () => this.transactions;
         this.getAccount = (countNumber) => this.totalAccounts.filter(item => {
             if (item.countNumber === countNumber) {
@@ -41,6 +41,11 @@ class Bank {
             this.transactions.push(transaction);
             return transaction;
         };
+        this.getAccountTransaction = (countNumber) => this.totalAccounts.filter(item => {
+            if (item.countNumber === countNumber) {
+                return item.transfers;
+            }
+        });
         this.numberFiliale = numberFiliale;
         this.transactions = transactions;
         this.totalAccounts = accounts;
