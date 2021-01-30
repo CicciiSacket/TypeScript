@@ -2,7 +2,7 @@
     {
         "accounts": [],
         "transactions": [],
-        "branch": 1234,
+        "branch": "1234",
         "treasure": 10000
     }
 ]

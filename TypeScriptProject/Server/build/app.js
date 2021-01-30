@@ -22,16 +22,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 module.exports = app.listen(3005);
 let banks = require('../Bank.json');
 app.get('/banks', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield res.json({ banks: banks });
-    }
-    catch (error) {
-        yield res.json(error);
-    }
+    yield res.json({ banks: banks });
 }));
 app.post('/banks', ({ body: { branch, treasure } }, res) => __awaiter(void 0, void 0, void 0, function* () {
     Bank_1.Bank.generateBank(branch, treasure);
-    res.json({ banks: banks });
+    yield res.json({ banks: banks });
+}));
+app.delete('/banks', ({ body: { branch } }, res) => __awaiter(void 0, void 0, void 0, function* () {
+    Bank_1.Bank.deleteBank(branch);
+    yield res.json({ banks: banks });
 }));
 app.post('/accounts', ({ body: { branchBank, namePerson, budget } }, res) => __awaiter(void 0, void 0, void 0, function* () {
     Bank_1.Bank.generateAccount(branchBank, namePerson, budget);

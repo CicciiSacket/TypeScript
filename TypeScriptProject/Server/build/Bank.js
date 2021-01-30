@@ -7,16 +7,20 @@ class Bank {
     constructor(branch, treasure, accounts = [], transactions = []) {
         this.accounts = [];
         this.transactions = [];
-        this.branch = branch,
-            this.treasure = treasure;
-        this.accounts = accounts;
-        this.transactions = transactions;
+        this.branch = branch, //numero di filiale della banca
+            this.treasure = treasure; //tesoro della banca
+        this.accounts = accounts; //account della banca
+        this.transactions = transactions; //transazioni della banca
     }
 }
 exports.Bank = Bank;
 Bank.generateBank = (branch, treasure, accounts = [], transactions = []) => {
     let bank = new Bank(branch, treasure, accounts, transactions);
     banks.push(bank);
+};
+Bank.deleteBank = (branch) => {
+    let index = banks.index((item) => item.branch === branch);
+    banks.pop(index);
 };
 Bank.generateAccount = (branchBank, namePerson, budget, IBAN, transactions) => {
     let user = {
@@ -26,5 +30,6 @@ Bank.generateAccount = (branchBank, namePerson, budget, IBAN, transactions) => {
         transactions: transactions = []
     };
     let selected = (banks.reduce((bank) => bank.branch === branchBank));
-    console.log(selected.accounts.push(user));
+    console.log(selected);
+    selected.accounts.push(user);
 };
