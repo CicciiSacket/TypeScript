@@ -29,8 +29,8 @@ app.get('/banks/:branch/accounts', async({params:{branch}},res)=> { //tutti gli 
     await res.json(Bank.getAccounts(branch))
 })
 app.post('/banks/:branch/accounts',async({params:{branch},body:{namePerson,budget}},res) => { //inserire un nuovo account in una banca OK!
-    await Bank.generateAccount(branch,namePerson,budget)    
-    res.json({banks:banks})
+    Bank.generateAccount(branch,namePerson,budget)    
+     await res.json({banks:banks})
 })
 app.delete('/banks/:branch/accounts',async({params:{branch},body:{IBAN}},res) => { //eliminare account da una banca OK!
     Bank.deleteAccount(branch,IBAN)
