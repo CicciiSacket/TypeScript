@@ -2,7 +2,6 @@ console.log('exe')
 import express, { Response, response } from 'express'
 import {Bank} from './Bank'
 
-
 const app = express()
 const bodyParser = require ('body-parser')
 app.use(bodyParser.json())
@@ -10,7 +9,6 @@ app.use(bodyParser.urlencoded({extended:true}))
 module.exports = app.listen(3005)
 
 let banks = require('../Bank.json')
-
 app.get('/banks', async (req,res) => { //lista di tutte le banche OK!
     await res.json({banks:banks})
 })
@@ -36,7 +34,3 @@ app.delete('/banks/:branch/accounts',async({params:{branch},body:{IBAN}},res) =>
     Bank.deleteAccount(branch,IBAN)
     await res.json(Bank.getAccounts(branch))
 })
-
-
-
-
