@@ -23,7 +23,7 @@ app.delete('/banks', async({body:{branch}},res)=> { //rimozione banca dalla list
     Bank.deleteBank(branch)
     await res.json({banks:banks})
 })
-app.get('/banks/:branch/accounts', async({params:{branch}},res)=> { //tutti gli account di una bancaOK!
+app.get('/banks/:branch/accounts', async({params:{branch}},res)=> { //tutti gli account di una banca OK!
     await res.json(Bank.getAccounts(branch))
 })
 app.post('/banks/:branch/accounts',async({params:{branch},body:{namePerson,budget}},res) => { //inserire un nuovo account in una banca OK!
