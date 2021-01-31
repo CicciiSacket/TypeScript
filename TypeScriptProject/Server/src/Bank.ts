@@ -53,4 +53,40 @@ export class Bank{
         let index = bank[0].accounts.indexOf(singleAccount[0])
         bank[0].accounts.splice(index,1)//[0] perchè filter torna un array
     }
+    static generateInternalTransfer = (branch :string, IBANsend:string , IBANreceive:string, moneyTransfer:number) => {
+        let transaction : Transaction = {
+            countSend:IBANsend,
+            countReceives:IBANreceive,
+            moneyTransfer:moneyTransfer
+        }
+        let bank = banks.filter((item: { branch: string }) => item.branch === branch)
+        bank[0].transactions.push(transaction)
+        let sendAccount = (bank[0].accounts.filter((item: { IBAN: string }) => item.IBAN === IBANsend))
+        let reciveAccount = (bank[0].accounts.filter((item: { IBAN: string }) => item.IBAN === IBANreceive))
+        sendAccount[0].budget -= moneyTransfer
+        reciveAccount[0].budget += moneyTransfer
+        reciveAccount[0].transactions.push(transaction)
+        sendAccount[0].transactions.push(transaction)
+    }
+    static generateGlobalTransfer = (branchSend :string, branchReceive :string ,IBANsend:string , IBANreceive:string, moneyTransfer:number) => {
+        let transaction : Transaction = {
+            countSend:IBANsend,
+            countReceives:IBANreceive,
+            moneyTransfer:moneyTransfer
+        }
+        let bankSend = banks.filter((item: { branch: string }) => item.branch === branchSend)
+        let bankReceive = banks.filter((item: { branch: string }) => item.branch === branchReceive)
+        bankSend[0].transactions.push(transaction)
+        bankReceive[0].transactions.push(transaction)
+        let sendAccount = (bankSend[0].accounts.filter((item: { IBAN: string }) => item.IBAN === IBANsend))
+        let reciveAccount = (bankReceive[0].accounts.filter((item: { IBAN: string }) => item.IBAN === IBANreceive))
+        let tax =  25
+        sendAccount[0].budget -= (moneyTransfer + tax) //!!
+        reciveAccount[0].budget += moneyTransfer
+        reciveAccount[0].transactions.push(transaction)
+        sendAccount[0].transactions.push(transaction)
+        bankSend[0].treasure += (tax/2)
+        bankReceive[0].treasure += (tax/2) //tutte e due le banche si spattono la tassa che paga chi ha effetuato il bonifico ha pagato 
+    }
 }
+

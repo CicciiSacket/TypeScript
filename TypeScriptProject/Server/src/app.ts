@@ -34,3 +34,11 @@ app.delete('/banks/:branch/accounts',async({params:{branch},body:{IBAN}},res) =>
     Bank.deleteAccount(branch,IBAN)
     await res.json(Bank.getAccounts(branch))
 })
+app.post('/banks/:branch/transfers',async({params:{branch},body:{IBANsends,IBANreceive,moneyTransfer}},res) => { //trasferimento denaro da due conti della stessa banca OK!
+    Bank.generateInternalTransfer(branch,IBANsends,IBANreceive,moneyTransfer)    
+     await res.json(Bank.getAccounts(branch))
+})
+app.post('/banks/:branchsend/transfers/:branchreceive',async({params:{branchsend,branchreceive},body:{IBANsends,IBANreceive,moneyTransfer}},res) => { //trasferimento denaro da due conti di banche diverse OK!
+    Bank.generateGlobalTransfer(branchsend,branchreceive,IBANsends,IBANreceive,moneyTransfer)    
+     await res.json({banks:banks})
+})
