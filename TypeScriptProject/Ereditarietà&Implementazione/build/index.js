@@ -40,3 +40,22 @@ class Square {
 }
 let square = new Square(4);
 console.log("quadrato: perimetro", square.getPerimeter(), " \t", "quadrato: area", square.getArea());
+class Quadrato extends Parallelogramma {
+    constructor() {
+        super(...arguments);
+        this.getArea = () => {
+            return this.side * this.side;
+        };
+        this.getPerimeter = () => {
+            return this.side * 4;
+        };
+        this.getResultArea = () => {
+            return this.getArea();
+        };
+        this.getResultPerimeter = () => {
+            return this.getPerimeter();
+        };
+    }
+}
+let quadrato = new Quadrato(12, 12);
+console.log(quadrato.getResultArea(), "\t", quadrato.getResultPerimeter());
