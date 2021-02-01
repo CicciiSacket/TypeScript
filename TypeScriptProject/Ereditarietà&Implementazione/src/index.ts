@@ -39,3 +39,21 @@ class Square implements Shape{
 }
 let square = new Square(4)
 console.log("quadrato: perimetro",square.getPerimeter(), " \t", "quadrato: area",square.getArea())
+
+
+class Quadrato extends Parallelogramma{
+    getArea = () =>{
+        return this.side * this.side;
+    }
+    getPerimeter = () =>{
+        return this.side * 4
+    }
+    getResultArea = () =>{
+        return this.getArea()
+    }
+    getResultPerimeter = () =>{
+        return this.getPerimeter()
+    }
+}
+let quadrato = new Quadrato(12,12)
+console.log(quadrato.getResultArea(),"\t",quadrato.getResultPerimeter())
